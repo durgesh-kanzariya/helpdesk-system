@@ -1,0 +1,22 @@
+﻿using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
+
+namespace HelpDeskSystem.Models
+{
+    public class Ticket
+    {
+        public int Id { get; set; }
+
+        public string Title { get; set; } = "";
+
+        public string Status { get; set; } = "Open";
+
+        public int UserId { get; set; }
+
+        public User User { get; set; } = null!;
+
+        public int CategoryId { get; set; }
+
+        public Category Category { get; set; } = null!;
+    }
+}
