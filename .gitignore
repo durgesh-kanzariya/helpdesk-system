@@ -1,4 +1,47 @@
-## Build results
+# ==========================================
+# HelpDesk System - Master .gitignore
+# ==========================================
+
+# ------------------------------------------
+# 1. QA Documentation (Excluded as requested)
+# ------------------------------------------
+docs/
+
+# ------------------------------------------
+# 2. Node.js & NPM Dependencies
+# ------------------------------------------
+node_modules/
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+package-lock.json.bak
+
+# ------------------------------------------
+# 3. Environment & Secret Configs
+# ------------------------------------------
+.env
+.env.local
+.env.*.local
+*.env
+
+# ------------------------------------------
+# 4. QA Automation Reports & Artifacts
+# ------------------------------------------
+automation/reports/
+test-results/
+playwright-report/
+blob-report/
+playwright/.cache/
+
+# ------------------------------------------
+# 5. Postman Local Workspace Cache
+# ------------------------------------------
+.postman/
+postman/
+
+# ------------------------------------------
+# 6. .NET / C# Build & Compiler Outputs
+# ------------------------------------------
 [Dd]ebug/
 [Dd]ebugPublic/
 [Rr]elease/
@@ -13,32 +56,23 @@ bld/
 [Ll]og/
 [Ll]ogs/
 
-## Visual Studio cache / configuration
+# Visual Studio / Rider / VS Code
 .vs/
+.idea/
 *.user
 *.suo
 *.userosscache
 *.sln.docstates
-
-## User-specific files
-*.rsuser
-*.suo
-*.user
-*.userosscache
-*.sln.docstates
-
-## Visual Studio Code
+*.code-workspace
 .vscode/*
 !.vscode/settings.json
 !.vscode/tasks.json
 !.vscode/launch.json
 !.vscode/extensions.json
-*.code-workspace
 
-## JetBrains Rider
-.idea/
-*.sln.iml
-
-## OS generated files
+# ------------------------------------------
+# 7. OS Generated Files
+# ------------------------------------------
 .DS_Store
 Thumbs.db
+desktop.ini
