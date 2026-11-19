@@ -1,0 +1,19 @@
+{
+  "compilerOptions": {
+    "target": "ES2022",
+    "module": "CommonJS",
+    "moduleResolution": "Node",
+    "strict": true,
+    "esModuleInterop": true,
+    "skipLibCheck": true,
+    "forceConsistentCasingInFileNames": true,
+    "baseUrl": ".",
+    "paths": {
+      "@pages/*": ["automation/playwright/pages/*"],
+      "@fixtures/*": ["automation/playwright/fixtures/*"],
+      "@data/*": ["automation/playwright/data/*"],
+      "@utils/*": ["automation/playwright/utils/*"]
+    }
+  },
+  "include": ["automation/playwright/**/*", "playwright.config.ts"]
+}

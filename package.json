@@ -1,0 +1,30 @@
+{
+  "name": "helpdesk-system",
+  "version": "1.0.0",
+  "description": "HelpDesk System QA Automation Framework (Playwright & Postman/Newman)",
+  "scripts": {
+    "test": "playwright test",
+    "test:api": "playwright test --project=api",
+    "test:ui": "playwright test --ui",
+    "test:headed": "playwright test --headed",
+    "test:debug": "playwright test --debug",
+    "test:newman": "newman run \"automation/postman/collections/HelpDesk_API.postman_collection.json\" -e \"automation/postman/environments/HelpDesk_Local.postman_environment.json\" -k -r \"cli,htmlextra\" --reporter-htmlextra-export \"automation/reports/newman/HelpDesk_API_Report.html\"",
+    "test:all": "npm run test:newman && npm run test:api",
+    "report:playwright": "playwright show-report automation/reports/playwright",
+    "codegen": "playwright codegen"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/durgesh-kanzariya/helpdesk-system.git"
+  },
+  "keywords": ["qa", "testing", "playwright", "postman", "newman", "api-testing"],
+  "author": "Durgesh Kanzariya",
+  "license": "ISC",
+  "devDependencies": {
+    "@playwright/test": "^1.65.1",
+    "@types/node": "^26.6.6",
+    "dotenv": "^18.0.10",
+    "rimraf": "^6.1.4",
+    "typescript": "^7.0.2"
+  }
+}
