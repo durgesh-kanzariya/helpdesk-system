@@ -3,30 +3,32 @@ using HelpDeskSystem.Services;
 using Microsoft.AspNetCore.Mvc;
 
 namespace HelpDeskSystem.Controllers
-{    
+{
     [ApiController]
     [Route("api/[controller]")]
     public class TicketsController : ControllerBase
     {
-        private readonly TicketService _service;
+        private readonly ITicketService _service;
 
-        public TicketsController(TicketService service)
+        public TicketsController(ITicketService service)
         {
             _service = service;
         }
 
         // GET: api/tickets
         [HttpGet]
-        public IActionResult GetAll()
+        public async Task<IActionResult> GetAll()
         {
-            return Ok(_service.GetAll());
+            var tickets = await _service.GetAllTicketsAsync();
+
+            return Ok(tickets);
         }
 
         // GET: api/tickets/1
         [HttpGet("{id}")]
-        public IActionResult GetById(int id)
+        public async Task<IActionResult> GetById(int id)
         {
-            var ticket = _service.GetById(id);
+            var ticket = await _service.GetTicketByIdAsync(id);
 
             if (ticket == null)
             {
@@ -38,15 +40,43 @@ namespace HelpDeskSystem.Controllers
 
         // POST: api/tickets
         [HttpPost]
-        public IActionResult Create(Ticket ticket)
+        public async Task<IActionResult> Create(Ticket ticket)
         {
-            _service.Add(ticket);
+            var createdTicket = await _service.CreateTicketAsync(ticket);
 
             return CreatedAtAction(
                 nameof(GetById),
-                new { id = ticket.Id },
-                ticket
+                new { id = createdTicket.Id },
+                createdTicket
             );
+        }
+
+        // PUT: api/tickets/1
+        [HttpPut("{id}")]
+        public async Task<IActionResult> Update(int id, Ticket ticket)
+        {
+            var updated = await _service.UpdateTicketAsync(id, ticket);
+
+            if (!updated)
+            {
+                return NotFound("Ticket not found");
+            }
+
+            return NoContent();
+        }
+
+        // DELETE: api/tickets/1
+        [HttpDelete("{id}")]
+        public async Task<IActionResult> Delete(int id)
+        {
+            var deleted = await _service.DeleteTicketAsync(id);
+
+            if (!deleted)
+            {
+                return NotFound("Ticket not found");
+            }
+
+            return NoContent();
         }
     }
 }
